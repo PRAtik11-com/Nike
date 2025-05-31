@@ -4,40 +4,37 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Sendmail = require("../utlis/sendmail");
 const CreateOtpAndToken = require("../utlis/otp");
+const OtpModel = require("../Models/otp.model");
 require('dotenv').config();
 
 const usercontroller = {
-checkemail:async(req ,res) => {
-      const { email } = req.body;
 
-  let user = await UserModel.findOne({ email });
+checkemail: async (req, res) => {
+  const { email } = req.body;
 
+  const user = await UserModel.findOne({ email });
   if (user && user.isVerified) {
     return res.json({ exists: true });
   }
 
-  const { otp, token, expiresInSeconds } = CreateOtpAndToken({ email }, 600); // 10 minutes
-
-  const expiryDate = new Date();
-  expiryDate.setSeconds(expiryDate.getSeconds() + expiresInSeconds);
-
-  if (!user) {
-    user = new UserModel({ email, otp, otpExpires: expiryDate });
-  } else {
-    user.otp = otp;
-    user.otpExpires = expiryDate;
-  }
-
-  await user.save();
+  const { otp, token, expiresInSeconds } = CreateOtpAndToken({ email }, 600);
+  const expiryDate = new Date(Date.now() + expiresInSeconds * 1000);
 
   try {
+    await OtpModel.findOneAndUpdate(
+      { email },
+      { otp, otpExpires: expiryDate },
+      { upsert: true, new: true }
+    );
+
     await Sendmail(email, otp);
-    res.status(200).json({ exists: false, message: 'OTP sent to email', token });
+    res.status(200).json({ exists: false, message: "OTP sent to email", token });
   } catch (err) {
-    res.status(500).json({ message: 'Failed to send OTP' });
+    console.error(err);
+    res.status(500).json({ message: "Failed to send OTP" });
   }
-      
-},
+}
+,
 validateotp:async(req,res) => {
   const { email, otp, token } = req.body;
 
@@ -64,8 +61,8 @@ validateotp:async(req,res) => {
     return res.status(400).json({ message: 'Invalid or expired token' });
   }
 },
-signup:async(req,res) => {
-   const {
+signup: async (req, res) => {
+  const {
     email,
     firstName,
     surname,
@@ -73,57 +70,82 @@ signup:async(req,res) => {
     otp,
     shoppingPreference,
     dateOfBirth,
-    location
+    location,
   } = req.body;
 
   if (req.body.role) {
     return res.status(400).json({
-      message: 'You do not have permission to assign roles.',
+      message: "You do not have permission to assign roles.",
     });
   }
 
-  if (!email || !firstName || !surname || !password || !otp || !shoppingPreference || !dateOfBirth) {
+  if (
+    !email ||
+    !firstName ||
+    !surname ||
+    !password ||
+    !otp ||
+    !shoppingPreference ||
+    !dateOfBirth
+  ) {
     return res.status(400).json({
-      message: 'Please fill all the required fields.',
+      message: "Please fill all the required fields.",
     });
   }
 
   try {
-    const user = await UserModel.findOne({ email });
+    const existingUser = await UserModel.findOne({ email });
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found. Start from OTP step.' });
+    if (existingUser && existingUser.isVerified) {
+      return res.status(400).json({ message: "User already signed up." });
     }
 
-    if (user.isVerified) {
-      return res.status(400).json({ message: 'User already signed up.' });
+    const otpRecord = await OtpModel.findOne({ email });
+
+    if (!otpRecord || otpRecord.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP." });
     }
 
-    if (user.otp !== otp || user.otpExpires < Date.now()) {
-      return res.status(400).json({ message: 'Invalid or expired OTP.' });
+    if (otpRecord.otpExpires < new Date()) {
+      return res.status(400).json({ message: "OTP expired." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Update user data
-    user.firstName = firstName;
-    user.surname = surname;
-    user.password = hashedPassword;
-    user.shoppingPreference = shoppingPreference;
-    user.dateOfBirth = dateOfBirth;
-    user.location = location || user.location; // Optional update
-    user.isVerified = true;
-    user.otp = undefined;
-    user.otpExpires = undefined;
+    let user;
+
+    if (existingUser) {
+      // Update unverified existing user
+      user = existingUser;
+      user.firstName = firstName;
+      user.surname = surname;
+      user.password = hashedPassword;
+      user.shoppingPreference = shoppingPreference;
+      user.dateOfBirth = dateOfBirth;
+      user.location = location || user.location;
+      user.isVerified = true;
+    } else {
+      // Create new user
+      user = new UserModel({
+        email,
+        firstName,
+        surname,
+        password: hashedPassword,
+        shoppingPreference,
+        dateOfBirth,
+        location,
+        isVerified: true,
+      });
+    }
 
     await user.save();
+    await OtpModel.deleteOne({ email }); // clean up OTP
 
-    return res.status(200).json({ message: 'Signup successful' });
-
+    return res.status(200).json({ message: "Signup successful" });
   } catch (err) {
+    console.error(err);
     return res.status(500).json({ message: err.message });
   }
-
 },
 login:async(req,res) => {
    try {

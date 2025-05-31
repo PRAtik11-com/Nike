@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 function CreateOtpAndToken(userData, expiresInSeconds) {
-  const otp = otpGenerator.generate(6, {
+  const otp = otpGenerator.generate(8, {
     upperCaseAlphabets: false,
     specialChars: false,
     lowerCaseAlphabets: false,
