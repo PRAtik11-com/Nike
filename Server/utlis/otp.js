@@ -10,7 +10,7 @@ function CreateOtpAndToken(userData, expiresInSeconds) {
   });
 
   const token = jwt.sign({ userData, otp }, process.env.PRIVATE_KEY, {
-    expiresIn: expiresInSeconds, // e.g., 600 seconds = 10 minutes
+    expiresIn: expiresInSeconds, 
   });
 
   return { otp, token, expiresInSeconds };

@@ -1,8 +1,10 @@
+const ProductModel = require("../Models/product.model");
+
 const productcontroller = {
   createProduct: async (req, res) => {
-  try {
+   try {
     const { title, content, category, price, size, color } = req.body;
-    const userId = req?.user?._id;
+    const userId = req?.user?.id; // ✅ correct based on login token
 
     if (!title || !content) {
       return res.status(400).json({ message: "Title and content are required" });
@@ -23,6 +25,7 @@ const productcontroller = {
 
     res.status(201).json({ message: "Product created successfully", product: newProduct });
   } catch (error) {
+    console.error("Create Product error:", error);
     res.status(500).json({ message: error.message });
   }
 },
@@ -104,7 +107,7 @@ const productcontroller = {
   },
 
   getallproducts: async (req, res) => {
-  const limit = req.query.limit || 2;
+  const limit = req.query.limit || 10;
   const startIndex = req.query.startIndex || 0;
   const sort = req.query.sort || "createdAt";
   const order = req.query.order || "asc";

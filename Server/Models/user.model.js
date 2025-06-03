@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
   shoppingPreference: {
     type: String,
     required: true,
-    enum: ['Men', 'Women', 'Kids', 'All'] // Modify as needed
+    enum: ['Men', 'Women', 'Kids', 'All'] 
   },
   dateOfBirth: {
     type:Date,
@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema({
   location: {
     country: {
       type: String,
-      required: true,
       default: 'India'
     },
     state: {

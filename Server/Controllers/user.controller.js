@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const Sendmail = require("../utlis/sendmail");
 const CreateOtpAndToken = require("../utlis/otp");
 const OtpModel = require("../Models/otp.model");
+const path = require("path");
+const ejs = require("ejs");
 require('dotenv').config();
 
 const usercontroller = {
@@ -27,7 +29,16 @@ checkemail: async (req, res) => {
       { upsert: true, new: true }
     );
 
-    await Sendmail(email, otp);
+    // Render EJS email template
+    const templatePath = path.join(__dirname + "/../views/email.ejs");
+    const htmlContent = await ejs.renderFile(templatePath, {
+      otp,
+      firstName: user?.firstName || "User"
+    });
+
+    // Send email
+    await Sendmail(email, htmlContent, "Your OTP Code");
+
     res.status(200).json({ exists: false, message: "OTP sent to email", token });
   } catch (err) {
     console.error(err);
@@ -35,7 +46,7 @@ checkemail: async (req, res) => {
   }
 }
 ,
-validateotp:async(req,res) => {
+validateotp: async (req, res) => {
   const { email, otp, token } = req.body;
 
   try {
@@ -50,13 +61,12 @@ validateotp:async(req,res) => {
       return res.status(400).json({ message: 'Invalid OTP' });
     }
 
-    const user = await UserModel.findOne({ email });
-    if (!user || user.otp !== otp || new Date(user.otpExpires) < new Date()) {
+    const otpRecord = await OtpModel.findOne({ email });
+    if (!otpRecord || otpRecord.otp !== otp || otpRecord.otpExpires < new Date()) {
       return res.status(400).json({ message: 'OTP expired or invalid' });
     }
 
     res.json({ message: 'OTP verified successfully' });
-
   } catch (err) {
     return res.status(400).json({ message: 'Invalid or expired token' });
   }
