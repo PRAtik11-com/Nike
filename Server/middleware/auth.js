@@ -15,7 +15,11 @@ function Auth(req, res, next) {
       return res.status(400).json({ message: "Token is Invalid" });
     }
 
-    req.user = decoded; // contains id and email
+    req.user = {
+      _id: decoded.id || decoded._id,
+      email: decoded.email,
+    };
+
     next();
   } catch (error) {
     return res.status(400).json({ message: error?.message });

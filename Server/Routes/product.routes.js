@@ -16,8 +16,8 @@ productRouter.patch(
   productcontroller.updateProduct
 );
 
-productRouter.get("/getSingleProduct/:productId", Auth, productcontroller.getSingleProduct);
-productRouter.get("/getallproducts", Auth, productcontroller.getallproducts);
+productRouter.get("/getSingleProduct/:productId", productcontroller.getSingleProduct);
+productRouter.get("/getallproducts",  productcontroller.getallproducts);
 
 
 

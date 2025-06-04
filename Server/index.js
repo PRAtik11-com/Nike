@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 const userRouter = require("./Routes/user.routes")
 const productRouter = require("./Routes/product.routes")
 const path = require("path"); 
+const cartRouter = require("./Routes/cart.routes");
 require("dotenv").config()
 
 
@@ -23,6 +24,7 @@ app.use(cors({
 //Routes
 app.use("/api/user",userRouter)
 app.use("/api/product",productRouter)
+app.use("/api/cart",cartRouter)
 
 app.use("/user", express.static(path.join(__dirname, "uploads/user")));
 app.use("/product", express.static(path.join(__dirname, "uploads/product")));

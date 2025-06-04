@@ -335,7 +335,7 @@ login:async(req,res) => {
   },
   logout: async (req, res) => {
     try {
-      res.clearCookie("access_token")
+      res.clearCookie("auth_token")
       res.status(200).json({ message: "User logged out successfully" });
     } catch (error) {
       res.status(400).json({message:error.message})
