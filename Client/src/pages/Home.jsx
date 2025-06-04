@@ -58,7 +58,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
           <div className="text-center">
-            <a href="#" className="block relative">
+            <a href="/ProductListpage" className="block relative">
               <img
                 data-qa="image-media-img"
                 alt="Nike. Just Do It"
@@ -75,7 +75,7 @@ const Home = () => {
 
           {/* Card 2 */}
           <div className="text-center">
-            <a href="#" className="block relative">
+            <a href="/ProductListpage" className="block relative">
               <img
                 data-qa="image-media-img"
                 alt="Nike. Just Do It"
@@ -92,7 +92,7 @@ const Home = () => {
 
           {/* Card 3 */}
           <div className="text-center">
-            <a href="#" className="block relative">
+            <a href="/ProductListpage" className="block relative">
               <img
                 data-qa="image-media-img"
                 alt="Nike. Just Do It"
@@ -113,7 +113,7 @@ const Home = () => {
       <div className="max-w-7xl mx-auto px-2 py-10">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Trending</h1>
         <div className="text-center">
-          <a href="#" className="block relative">
+          <a href="/ProductListpage" className="block relative">
             <img
               data-qa="image-media-img"
               alt="Nike. Just Do It"

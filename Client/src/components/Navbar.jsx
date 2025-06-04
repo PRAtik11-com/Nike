@@ -7,12 +7,48 @@ import {
   FaSearch,
   FaChevronDown,
 } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutSuccess } from "../Redux/auth/userSlice";
+import axios from "axios";
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { user } = useSelector((state) => state.auth);
+  // console.log(user.firstName);
 
   const navItems = ["New & Featured", "Men", "Women", "Kids", "Sale", "SNKRS"];
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BaseUrl}/user/logout`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res?.data);
+
+      dispatch(logoutSuccess());
+      localStorage.removeItem("token");
+      navigate("/CheckEmail");
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+    }
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      navigate(`/ProductListpage?search=${searchQuery}`);
+    }
+  };
 
   return (
     <div className="border-b border-gray-200 relative">
@@ -21,12 +57,7 @@ const Navbar = () => {
         <div className="bg-gray-100 text-xs px-10 py-2 flex justify-between items-center ">
           {/* Left side - Jordan icon */}
           <div className="flex items-center">
-            <a
-              aria-label="Jordan"
-              
-              data-testid="link"
-              href="https://www.nike.com/in/jordan"
-            >
+            <a aria-label="Jordan" data-testid="link" href="/">
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -56,14 +87,24 @@ const Navbar = () => {
               Help
             </a>
             <span>|</span>
-            <div
-              className="flex items-center space-x-1 cursor-pointer group"
-              onMouseEnter={() => setShowProfileDropdown(true)}
-            >
-              <span>Hi, Pratik</span>
-              <FaRegUser />
-              <FaChevronDown className="text-xs transition-transform group-hover:rotate-180" />
-            </div>
+            {user ? (
+              <div
+                className="flex items-center space-x-1 cursor-pointer group"
+                onMouseEnter={() => setShowProfileDropdown(true)}
+              >
+                <span>Hi, {user?.firstName || "Guest"}</span>
+                <FaRegUser />
+                <FaChevronDown className="text-xs transition-transform group-hover:rotate-180" />
+              </div>
+            ) : (
+              <Link
+                to="/CheckEmail"
+                className="hover:underline flex items-center space-x-1"
+              >
+                <span>Sign In</span>
+                <FaRegUser />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -79,7 +120,10 @@ const Navbar = () => {
             </div>
             <ul className="text-sm">
               <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                <a
+                  href="/DashProfile"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
                   Profile
                 </a>
               </li>
@@ -109,9 +153,12 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="border-t border-gray-100 mt-1">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={handleLogout}
+                >
                   Log Out
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -123,11 +170,7 @@ const Navbar = () => {
         <nav className="bg-white px-10 py-2 flex justify-between items-center relative z-20">
           {/* Logos */}
           <div className="flex items-center space-x-4">
-            <a
-              aria-label="Nike Homepage"
-              data-testid="link"
-              href="https://www.nike.com/in/"
-            >
+            <a aria-label="Nike Homepage" data-testid="link" href="/">
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -165,15 +208,22 @@ const Navbar = () => {
           {/* Right Controls */}
           <div className="flex items-center space-x-4">
             <div className="bg-gray-100 rounded-full px-4 py-2 flex items-center text-gray-500 text-sm">
-              <FaSearch className="mr-2" />
+              <FaSearch
+                className="mr-2 cursor-pointer"
+              />
               <input
                 type="text"
                 placeholder="Search"
                 className="bg-transparent outline-none w-28"
+                value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
               />
             </div>
             <FaRegHeart className="cursor-pointer" />
-            <FaShoppingBag className="cursor-pointer" />
+            <Link to="/cartpage">
+              <FaShoppingBag className="cursor-pointer" />
+            </Link>
           </div>
         </nav>
 

@@ -7,24 +7,24 @@ const DropdownMenu = ({ section }) => {
           <h3 className="font-bold mb-3">Featured</h3>
           <ul className="space-y-1">
             <li>
-              <a href="#" className="hover:underline">
+              <a href="/ProductListpage" className="hover:underline">
                 New & Upcoming Drops
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline">New Arrivals</a>
+              <a href = "/ProductListpage" className="hover:underline">New Arrivals</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Bestsellers</a>
+              <a href = "/ProductListpage" className="hover:underline">Bestsellers</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">SNKRS Launch Calendar</a>
+              <a href = "/ProductListpage" className="hover:underline">SNKRS Launch Calendar</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Customise with Nike By You</a>
+              <a href = "/ProductListpage" className="hover:underline">Customise with Nike By You</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Jordan</a>
+              <a href = "/ProductListpage" className="hover:underline">Jordan</a>
             </li>
           </ul>
         </div>
@@ -34,25 +34,25 @@ const DropdownMenu = ({ section }) => {
           <h3 className="font-bold mb-3">Trending</h3>
           <ul className="space-y-1">
             <li>
-              <a href="#" className="hover:underline">Summer Essentials</a>
+              <a href = "/ProductListpage" className="hover:underline">Summer Essentials</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Air Max Dn8</a>
+              <a href = "/ProductListpage" className="hover:underline">Air Max Dn8</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">What's Trending</a>
+              <a href = "/ProductListpage" className="hover:underline">What's Trending</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Nike 24.7</a>
+              <a href = "/ProductListpage" className="hover:underline">Nike 24.7</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Colours of the Season: Pastel</a>
+              <a href = "/ProductListpage" className="hover:underline">Colours of the Season: Pastel</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Retro Running</a>
+              <a href = "/ProductListpage" className="hover:underline">Retro Running</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Running Shoe Finder</a>
+              <a href = "/ProductListpage" className="hover:underline">Running Shoe Finder</a>
             </li>
           </ul>
         </div>
@@ -62,31 +62,31 @@ const DropdownMenu = ({ section }) => {
           <h3 className="font-bold mb-3">Shop Icons</h3>
           <ul className="space-y-1">
             <li>
-              <a href="#" className="hover:underline">Lifestyle</a>
+              <a href = "/ProductListpage" className="hover:underline">Lifestyle</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Air Force 1</a>
+              <a href = "/ProductListpage" className="hover:underline">Air Force 1</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Air Jordan 1</a>
+              <a href = "/ProductListpage" className="hover:underline">Air Jordan 1</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Air Max</a>
+              <a href = "/ProductListpage" className="hover:underline">Air Max</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Dunk</a>
+              <a href = "/ProductListpage" className="hover:underline">Dunk</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Cortez</a>
+              <a href = "/ProductListpage" className="hover:underline">Cortez</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Blazer</a>
+              <a href = "/ProductListpage" className="hover:underline">Blazer</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Pegasus</a>
+              <a href = "/ProductListpage" className="hover:underline">Pegasus</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Vomero</a>
+              <a href = "/ProductListpage" className="hover:underline">Vomero</a>
             </li>
           </ul>
         </div>
@@ -96,28 +96,28 @@ const DropdownMenu = ({ section }) => {
           <h3 className="font-bold mb-3">Shop By Sport</h3>
           <ul className="space-y-1">
             <li>
-              <a href="#" className="hover:underline">Running</a>
+              <a href = "/ProductListpage" className="hover:underline">Running</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Basketball</a>
+              <a href = "/ProductListpage" className="hover:underline">Basketball</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Football</a>
+              <a href = "/ProductListpage" className="hover:underline">Football</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Golf</a>
+              <a href = "/ProductListpage" className="hover:underline">Golf</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Tennis</a>
+              <a href = "/ProductListpage" className="hover:underline">Tennis</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Gym and Training</a>
+              <a href = "/ProductListpage" className="hover:underline">Gym and Training</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Yoga</a>
+              <a href = "/ProductListpage" className="hover:underline">Yoga</a>
             </li>
             <li>
-              <a href="#" className="hover:underline">Skateboarding</a>
+              <a href = "/ProductListpage" className="hover:underline">Skateboarding</a>
             </li>
           </ul>
         </div>
@@ -132,9 +132,9 @@ const DropdownMenu = ({ section }) => {
         <div>
           <h3 className="font-bold mb-3">Featured</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">New Arrivals</a></li>
-            <li><a href="#" className="hover:underline">Bestsellers</a></li>
-            <li><a href="#" className="hover:underline">Shop All Sale</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">New Arrivals</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Bestsellers</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Shop All Sale</a></li>
           </ul>
         </div>
 
@@ -142,16 +142,16 @@ const DropdownMenu = ({ section }) => {
         <div>
           <h3 className="font-bold mb-3">Shoes</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">All Shoes</a></li>
-            <li><a href="#" className="hover:underline">Lifestyle</a></li>
-            <li><a href="#" className="hover:underline">Jordan</a></li>
-            <li><a href="#" className="hover:underline">Running</a></li>
-            <li><a href="#" className="hover:underline">Football</a></li>
-            <li><a href="#" className="hover:underline">Basketball</a></li>
-            <li><a href="#" className="hover:underline">Gym and Training</a></li>
-            <li><a href="#" className="hover:underline">Skateboarding</a></li>
-            <li><a href="#" className="hover:underline">Sandals and Slides</a></li>
-            <li><a href="#" className="hover:underline">Nike By You</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">All Shoes</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Lifestyle</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Jordan</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Running</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Football</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Basketball</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Gym and Training</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Skateboarding</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Sandals and Slides</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Nike By You</a></li>
           </ul>
         </div>
 
@@ -159,14 +159,14 @@ const DropdownMenu = ({ section }) => {
         <div>
           <h3 className="font-bold mb-3">Clothing</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">All Clothing</a></li>
-            <li><a href="#" className="hover:underline">Tops and T-Shirts</a></li>
-            <li><a href="#" className="hover:underline">Shorts</a></li>
-            <li><a href="#" className="hover:underline">Pants and Leggings</a></li>
-            <li><a href="#" className="hover:underline">Hoodies and Sweatshirts</a></li>
-            <li><a href="#" className="hover:underline">Jackets and Gilets</a></li>
-            <li><a href="#" className="hover:underline">Jerseys and Kits</a></li>
-            <li><a href="#" className="hover:underline">Jordan</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">All Clothing</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Tops and T-Shirts</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Shorts</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Pants and Leggings</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Hoodies and Sweatshirts</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Jackets and Gilets</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Jerseys and Kits</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Jordan</a></li>
           </ul>
         </div>
 
@@ -174,14 +174,14 @@ const DropdownMenu = ({ section }) => {
         <div>
           <h3 className="font-bold mb-3">Shop By Sport</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">Running</a></li>
-            <li><a href="#" className="hover:underline">Basketball</a></li>
-            <li><a href="#" className="hover:underline">Football</a></li>
-            <li><a href="#" className="hover:underline">Golf</a></li>
-            <li><a href="#" className="hover:underline">Tennis</a></li>
-            <li><a href="#" className="hover:underline">Gym and Training</a></li>
-            <li><a href="#" className="hover:underline">Yoga</a></li>
-            <li><a href="#" className="hover:underline">Skateboarding</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Running</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Basketball</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Football</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Golf</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Tennis</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Gym and Training</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Yoga</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Skateboarding</a></li>
           </ul>
         </div>
 
@@ -189,10 +189,10 @@ const DropdownMenu = ({ section }) => {
         <div>
           <h3 className="font-bold mb-3">Accessories & Equipment</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">All Accessories</a></li>
-            <li><a href="#" className="hover:underline">Bags and Backpacks</a></li>
-            <li><a href="#" className="hover:underline">Socks</a></li>
-            <li><a href="#" className="hover:underline">Hats and Headwear</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">All Accessories</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Bags and Backpacks</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Socks</a></li>
+            <li><a href = "/ProductListpage" className="hover:underline">Hats and Headwear</a></li>
           </ul>
         </div>
       </div>

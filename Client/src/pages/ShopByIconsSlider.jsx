@@ -100,7 +100,7 @@ const ShopByIconsSlider = () => {
                   key={`${currentIconIndex}-${index}`}
                   className="w-1/3 max-w-xs flex-shrink-0"
                 >
-                  <a href={item.link} className="block">
+                  <a href="/ProductListpage" className="block">
                     {/* <div className="bg-white rounded-lg p-6 h-96 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition"> */}
                       <img 
                         src={item.image} 

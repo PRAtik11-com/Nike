@@ -66,8 +66,8 @@ const TrendingNowSlider = () => {
           >
             {trendingProducts.map((product) => (
               <Link
-                // to={`/product/${product._id || product.id}`}
-                key={product._id || product.id}
+                to={`/product/${product._id }`}
+                key={product._id }
                 className="w-full flex-shrink-0 px-4 block"
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer">
